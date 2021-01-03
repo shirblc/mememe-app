@@ -28,6 +28,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRb-tl-FKb">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="75"/>
                                         <state key="normal" image="camera.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="checkCameraPermission:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4gL-Sc-5HY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2R6-mh-OIQ">
                                         <rect key="frame" x="207" y="0.0" width="207" height="75"/>
