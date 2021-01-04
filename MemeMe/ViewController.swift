@@ -29,6 +29,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.text = "BOTTOM"
         bottomTextField.textAlignment = .center
         bottomTextField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(moveView(keyboardNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     // MARK: Meme from Photos methods
@@ -157,6 +162,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         memePhoto.image = selectedImage
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: Textfield-related methods
+    // textFieldShouldReturn
+    // Protocol: UITextFieldDelegate
+    // Dismisses the keyboard upon pressing 'return'
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        view.frame.origin.y = 0
+        return true
+    }
+    
+    // moveView
+    // Moves the view to ensure the keyboard isn't covering the text field.
+    @objc func moveView(keyboardNotification notification:Notification) {
+        if let keyboard = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] {
+            view.frame.origin.y -= (keyboard as? CGRect)?.height ?? 0
+        }
+        
     }
     
     // MARK: Convenience Methods
