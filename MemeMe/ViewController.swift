@@ -163,5 +163,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    // cancelMeme
+    // Cancels the current edit.
+    @IBAction func cancelMeme() {
+        memePhoto.image = nil
+    }
 }
 
