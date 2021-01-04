@@ -9,14 +9,26 @@ import UIKit
 import AVFoundation
 import PhotosUI
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var memePhoto: UIImageView!
+    @IBOutlet var topTextField: UITextField!
+    @IBOutlet var bottomTextField: UITextField!
     let userPhotoLibrary = PHPhotoLibrary.shared()
     var alertController = UIAlertController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Top text field styling
+        topTextField.autocapitalizationType = .allCharacters
+        topTextField.text = "TOP"
+        topTextField.textAlignment = .center
+        topTextField.delegate = self
+        // Bottom text field styling
+        bottomTextField.autocapitalizationType = .allCharacters
+        bottomTextField.text = "BOTTOM"
+        bottomTextField.textAlignment = .center
+        bottomTextField.delegate = self
     }
     
     // MARK: Meme from Photos methods

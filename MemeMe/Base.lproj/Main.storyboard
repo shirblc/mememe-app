@@ -60,6 +60,16 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="oZO-8c-Xml"/>
                                 </constraints>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="qlQ-dn-uwX">
+                                <rect key="frame" x="190.5" y="192" width="33" height="34"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zdc-0p-i2G">
+                                <rect key="frame" x="190.5" y="715" width="33" height="34"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -69,11 +79,15 @@
                             <constraint firstItem="kWl-9W-tGq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A6E-OK-Mb9"/>
                             <constraint firstItem="WFl-CI-fcA" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Fic-Dr-3Hu"/>
                             <constraint firstItem="WFl-CI-fcA" firstAttribute="top" secondItem="cxv-HW-ann" secondAttribute="bottom" constant="8" id="HfH-1m-7Xl"/>
+                            <constraint firstItem="Zdc-0p-i2G" firstAttribute="bottom" secondItem="cxv-HW-ann" secondAttribute="bottom" constant="-40" id="N4Q-Ti-5xS"/>
                             <constraint firstItem="cxv-HW-ann" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QIL-Wa-sqE"/>
                             <constraint firstItem="cxv-HW-ann" firstAttribute="trailing" secondItem="WFl-CI-fcA" secondAttribute="trailing" id="VP3-qv-Fgl"/>
+                            <constraint firstItem="qlQ-dn-uwX" firstAttribute="top" secondItem="cxv-HW-ann" secondAttribute="top" constant="40" id="ap1-cO-lpH"/>
+                            <constraint firstItem="qlQ-dn-uwX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="as3-hn-BmE"/>
                             <constraint firstItem="kWl-9W-tGq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cBO-l9-mY6"/>
                             <constraint firstItem="kWl-9W-tGq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cin-3u-VwQ"/>
                             <constraint firstItem="kWl-9W-tGq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gEB-0W-1SC"/>
+                            <constraint firstItem="Zdc-0p-i2G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gLi-mB-eoo"/>
                             <constraint firstItem="cxv-HW-ann" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="22.5" id="nF3-Qj-mht"/>
                             <constraint firstItem="WFl-CI-fcA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="stA-dD-DdS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WFl-CI-fcA" secondAttribute="trailing" id="xCh-wG-rGm"/>
@@ -81,7 +95,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomTextField" destination="Zdc-0p-i2G" id="8eC-7c-TJe"/>
                         <outlet property="memePhoto" destination="cxv-HW-ann" id="pJd-to-mIh"/>
+                        <outlet property="topTextField" destination="qlQ-dn-uwX" id="obR-nk-KXB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
