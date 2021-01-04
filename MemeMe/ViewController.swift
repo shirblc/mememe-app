@@ -10,6 +10,9 @@ import AVFoundation
 import PhotosUI
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
+    
+    @IBOutlet weak var memePhoto: UIImageView!
+    let userPhotoLibrary = PHPhotoLibrary.shared()
     var alertController = UIAlertController()
 
     override func viewDidLoad() {
@@ -60,7 +63,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Presents the Photos library for the user to select a photo.
     func openPhotos() {
         // Configuration for the picker
-        var pickerConfig = PHPickerConfiguration()
+        var pickerConfig = PHPickerConfiguration(photoLibrary: userPhotoLibrary)
         pickerConfig.filter = .images
         pickerConfig.selectionLimit = 1
         // Create and launch photo picker
@@ -73,7 +76,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Protocol: PHPickerViewControllerDelegate
     // Responsible for handling the photo the user picked.
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        print("picked")
+        picker.dismiss(animated: true, completion: nil)
+        
+        // Check the user made a selection
+        if results.count > 0 {
+            // Check there's an identifier for the selected photo
+            if let asset = results[0].assetIdentifier {
+                // Fetch the selected photo and display it
+                let image = PHAsset.fetchAssets(withLocalIdentifiers: [ asset ], options: nil)
+                PHImageManager.default().requestImage(for: image[0], targetSize: CGSize(width: 1000, height: 1000), contentMode: .aspectFit, options: nil, resultHandler: {
+                    ( finalImage, info ) in self.memePhoto.image = finalImage
+                })
+            }
+        }
     }
 
     // MARK: Meme from camera methods
@@ -121,6 +136,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         else {
             createErrorAlert(message: "Camera is not currently available.")
         }
+    }
+    
+    // imagePickerController
+    // Protocol: UIImagePickerControllerDelegate
+    // Gets the selected image and dismisses the picker.
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        memePhoto.image = selectedImage
+        picker.dismiss(animated: true, completion: nil)
     }
     
     // MARK: Convenience Methods
