@@ -17,45 +17,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cxv-HW-ann">
-                                <rect key="frame" x="-28" y="117.5" width="470" height="705.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="cxv-HW-ann" secondAttribute="height" multiplier="207:331" constant="27.85800604229604" id="Kgh-yi-rXc"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="152" width="414" height="637"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WFl-CI-fcA">
-                                <rect key="frame" x="-28" y="832" width="470" height="30"/>
+                                <rect key="frame" x="0.0" y="797" width="414" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRb-tl-FKb">
-                                        <rect key="frame" x="0.0" y="0.0" width="235" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="65"/>
                                         <state key="normal" image="camera.fill" catalog="system"/>
                                         <connections>
                                             <action selector="checkCameraPermission:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4gL-Sc-5HY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2R6-mh-OIQ">
-                                        <rect key="frame" x="235" y="0.0" width="235" height="30"/>
+                                        <rect key="frame" x="207" y="0.0" width="207" height="65"/>
                                         <state key="normal" title="Camera Roll"/>
                                         <connections>
                                             <action selector="checkPhotosPermission:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tz7-Ug-74n"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="Qif-tN-9cF"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="248" translatesAutoresizingMaskIntoConstraints="NO" id="kWl-9W-tGq">
-                                <rect key="frame" x="0.0" y="44" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8y-Oo-9WD">
-                                        <rect key="frame" x="0.0" y="0.0" width="83" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="100"/>
                                         <state key="normal" image="square.and.arrow.up" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wN-fj-QGt">
-                                        <rect key="frame" x="331" y="0.0" width="83" height="65"/>
+                                        <rect key="frame" x="331" y="0.0" width="83" height="100"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="cancelMeme" destination="BYZ-38-t0r" eventType="touchUpInside" id="s6m-g9-mQs"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="oZO-8c-Xml"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -73,6 +76,8 @@
                             <constraint firstItem="kWl-9W-tGq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gEB-0W-1SC"/>
                             <constraint firstItem="cxv-HW-ann" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="22.5" id="nF3-Qj-mht"/>
                             <constraint firstItem="WFl-CI-fcA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="stA-dD-DdS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WFl-CI-fcA" secondAttribute="trailing" id="xCh-wG-rGm"/>
+                            <constraint firstItem="WFl-CI-fcA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ygm-Q8-uJx"/>
                         </constraints>
                     </view>
                     <connections>
