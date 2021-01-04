@@ -10,6 +10,7 @@ import AVFoundation
 import PhotosUI
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
+    var alertController = UIAlertController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,22 +37,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         selectPhotos.presentLimitedLibraryPicker(from: self)
                     }
                     else {
-                        print("Photos access has been denied. Please enable Photos access in Settings -> Privacy -> Photos.")
+                        self.createErrorAlert(message: "Photos access has been denied. Please enable Photos access in Settings -> Privacy -> Photos.")
                     }
                 })
             // If the user denied Photos access, alert the user they've denied permission.
             case .denied:
-                print("Photos access has been denied. Please enable Photos access in Settings -> Privacy -> Photos.")
+                createErrorAlert(message: "Photos access has been denied. Please enable Photos access in Settings -> Privacy -> Photos.")
             // If the app has limited photo access, show the library.
             // TODO: Display only selected assets
             case .limited:
                 openPhotos()
             // If Photos access has been restricted, alert the user.
             case .restricted:
-                print("Photos access has been restricted. Please enable Photos access in Settings -> Privacy -> Photos.")
+                createErrorAlert(message: "Photos access has been restricted. Please enable Photos access in Settings -> Privacy -> Photos.")
             // For any other authorization status, alert the user that something went wrong.
             @unknown default:
-                print("An unknown error occurred.")
+                createErrorAlert(message: "An unknown error occurred.")
         }
     }
     
@@ -91,18 +92,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         self.openCamera()
                     }
                     else {
-                        print("Camera access has been denied. Please enable camera access in Settings -> Privacy -> Camera.")
+                        self.createErrorAlert(message: "Camera access has been denied. Please enable camera access in Settings -> Privacy -> Camera.")
                     }
                 })
             // If the user denied camera access, alert the user they've denied permission.
             case .denied:
-                print("Camera access has been denied. Please enable camera access in Settings -> Privacy -> Camera.")
+                createErrorAlert(message: "Camera access has been denied. Please enable camera access in Settings -> Privacy -> Camera.")
             // If camera access has been restricted, alert the user.
             case .restricted:
-                print("Camera access has been restriced. Please adjust camera access settings in Settings -> Privacy -> Camera.")
+                createErrorAlert(message: "Camera access has been restriced. Please adjust camera access settings in Settings -> Privacy -> Camera.")
             // For any other authorization status, alert the user that something went wrong.
             @unknown default:
-                print("An unknown error occurred.")
+                createErrorAlert(message: "An unknown error occurred.")
         }
     }
     
@@ -118,8 +119,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         // Otherwise alert the user the camera isn't avilable.
         else {
-            print("Camera is not currently available.")
+            createErrorAlert(message: "Camera is not currently available.")
         }
+    }
+    
+    // MARK: Convenience Methods
+    // createErrorAlert
+    // Creates an error alert with the given message.
+    func createErrorAlert(message: String) {
+        alertController.title = "Error!"
+        alertController.message = message
+        // Check that there are no actions and only then add the "understood" button, in order to ensure there's only one button.
+        if alertController.actions.isEmpty {
+            let dismissAction = UIAlertAction(title: "Understood", style: .default, handler: {
+                action in self.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(dismissAction)
+        }
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 
