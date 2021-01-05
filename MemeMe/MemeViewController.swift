@@ -99,7 +99,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if let asset = results[0].assetIdentifier {
                 // Fetch the selected photo and display it
                 let image = PHAsset.fetchAssets(withLocalIdentifiers: [ asset ], options: nil)
-                PHImageManager.default().requestImage(for: image[0], targetSize: CGSize(width: 1000, height: 1000), contentMode: .aspectFit, options: nil, resultHandler: {
+                PHImageManager.default().requestImage(for: image[0], targetSize: CGSize(width: self.memePhoto.frame.width, height: self.memePhoto.frame.height), contentMode: .aspectFit, options: nil, resultHandler: {
                     ( finalImage, info ) in self.memePhoto.image = finalImage
                 })
                 self.toggleTextFields(visible: true)

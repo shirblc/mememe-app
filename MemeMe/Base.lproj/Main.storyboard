@@ -17,17 +17,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WFl-CI-fcA" userLabel="Bottom toolbar">
-                                <rect key="frame" x="0.0" y="797" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="823" width="414" height="34"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRb-tl-FKb">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" image="camera.fill" catalog="system"/>
                                         <connections>
                                             <action selector="checkCameraPermission:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4gL-Sc-5HY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2R6-mh-OIQ">
-                                        <rect key="frame" x="207" y="0.0" width="207" height="65"/>
+                                        <rect key="frame" x="207" y="0.0" width="207" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Camera Roll"/>
                                         <connections>
                                             <action selector="checkPhotosPermission:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tz7-Ug-74n"/>
@@ -35,41 +37,43 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="Qif-tN-9cF"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="65" id="Qif-tN-9cF"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="248" translatesAutoresizingMaskIntoConstraints="NO" id="kWl-9W-tGq" userLabel="Top toolbar">
-                                <rect key="frame" x="0.0" y="44" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="49" width="414" height="33"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8y-Oo-9WD">
-                                        <rect key="frame" x="0.0" y="0.0" width="83" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" image="square.and.arrow.up" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wN-fj-QGt">
-                                        <rect key="frame" x="331" y="0.0" width="83" height="65"/>
-                                        <state key="normal" title="Cancel"/>
+                                        <rect key="frame" x="331" y="0.0" width="83" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Cancel  "/>
                                         <connections>
                                             <action selector="cancelMeme" destination="BYZ-38-t0r" eventType="touchUpInside" id="s6m-g9-mQs"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="oZO-8c-Xml"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="65" id="oZO-8c-Xml"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35A-qj-Tab">
-                                <rect key="frame" x="0.0" y="109" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="82" width="414" height="736"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cxv-HW-ann">
-                                        <rect key="frame" x="0.0" y="26" width="414" height="631"/>
+                                        <rect key="frame" x="0.0" y="26" width="414" height="684"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="qlQ-dn-uwX">
-                                        <rect key="frame" x="191" y="66" width="33" height="34"/>
+                                        <rect key="frame" x="191" y="56" width="33" height="34"/>
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zdc-0p-i2G">
-                                        <rect key="frame" x="190.5" y="583" width="33" height="34"/>
+                                        <rect key="frame" x="190.5" y="646" width="33" height="34"/>
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
@@ -79,9 +83,9 @@
                                     <constraint firstItem="Zdc-0p-i2G" firstAttribute="centerX" secondItem="35A-qj-Tab" secondAttribute="centerX" id="8JZ-4q-CEj"/>
                                     <constraint firstItem="cxv-HW-ann" firstAttribute="leading" secondItem="35A-qj-Tab" secondAttribute="leading" id="8Qw-bA-daF"/>
                                     <constraint firstItem="qlQ-dn-uwX" firstAttribute="centerX" secondItem="35A-qj-Tab" secondAttribute="centerX" constant="0.5" id="GqY-ge-PHI"/>
-                                    <constraint firstItem="qlQ-dn-uwX" firstAttribute="top" secondItem="cxv-HW-ann" secondAttribute="top" constant="40" id="R5j-09-vnT"/>
+                                    <constraint firstItem="qlQ-dn-uwX" firstAttribute="top" secondItem="cxv-HW-ann" secondAttribute="top" constant="30" id="R5j-09-vnT"/>
                                     <constraint firstItem="cxv-HW-ann" firstAttribute="top" secondItem="35A-qj-Tab" secondAttribute="top" constant="26" id="fsy-VH-4hx"/>
-                                    <constraint firstItem="Zdc-0p-i2G" firstAttribute="bottom" secondItem="cxv-HW-ann" secondAttribute="bottom" constant="-40" id="g2l-Dw-yaY"/>
+                                    <constraint firstItem="Zdc-0p-i2G" firstAttribute="bottom" secondItem="cxv-HW-ann" secondAttribute="bottom" constant="-30" id="g2l-Dw-yaY"/>
                                     <constraint firstItem="cxv-HW-ann" firstAttribute="centerY" secondItem="35A-qj-Tab" secondAttribute="centerY" id="nud-YK-Ic3"/>
                                     <constraint firstItem="cxv-HW-ann" firstAttribute="centerX" secondItem="35A-qj-Tab" secondAttribute="centerX" id="oLx-42-yCw"/>
                                 </constraints>
@@ -91,11 +95,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kWl-9W-tGq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A6E-OK-Mb9"/>
-                            <constraint firstItem="WFl-CI-fcA" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Fic-Dr-3Hu"/>
+                            <constraint firstItem="WFl-CI-fcA" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-5" id="Fic-Dr-3Hu"/>
                             <constraint firstItem="35A-qj-Tab" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Tla-P4-b3D"/>
                             <constraint firstItem="kWl-9W-tGq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cBO-l9-mY6"/>
                             <constraint firstItem="kWl-9W-tGq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cin-3u-VwQ"/>
-                            <constraint firstItem="kWl-9W-tGq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gEB-0W-1SC"/>
+                            <constraint firstItem="kWl-9W-tGq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="gEB-0W-1SC"/>
                             <constraint firstItem="35A-qj-Tab" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lFx-oP-a9g"/>
                             <constraint firstItem="35A-qj-Tab" firstAttribute="top" secondItem="kWl-9W-tGq" secondAttribute="bottom" id="oDR-fp-hrn"/>
                             <constraint firstItem="WFl-CI-fcA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="stA-dD-DdS"/>
