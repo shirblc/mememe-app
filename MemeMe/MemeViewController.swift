@@ -280,7 +280,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // Update the text fields' constraints.
     func setConstraints(finalImage: UIImage) {
         // If the device is currently in portrait mode.
-        if UIDevice.current.orientation.isPortrait {
+        if self.view.frame.height > self.view.frame.width {
             // If the image is in landscape mode (meaning, wider than its height), get its actual height on the device and set the constraints.
             if(finalImage.size.width > finalImage.size.height) {
                 // The photo's height * its resize value (by how much it was resized in order to fit into the screen).
