@@ -18,6 +18,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet var memeView: UIView!
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var shareButton: UIButton!
+    @IBOutlet var topTextFieldConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomTextFieldConstraint: NSLayoutConstraint!
     
     // Variables & Constants
     let userPhotoLibrary = PHPhotoLibrary.shared()
@@ -34,6 +36,16 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        // Once the transition has completed, update the text fields' constraints to ensure they're shown correctly.
+        coordinator.animate(alongsideTransition: nil, completion: {
+            _ in if let image = self.memePhoto.image {
+                self.setConstraints(finalImage: image)
+            }
+        })
     }
     
     // MARK: Meme from Photos methods
@@ -101,8 +113,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if let asset = results[0].assetIdentifier {
                 // Fetch the selected photo and display it
                 let image = PHAsset.fetchAssets(withLocalIdentifiers: [ asset ], options: nil)
-                PHImageManager.default().requestImage(for: image[0], targetSize: CGSize(width: self.memePhoto.frame.width, height: self.memePhoto.frame.height), contentMode: .aspectFit, options: nil, resultHandler: {
+                PHImageManager.default().requestImage(for: image[0], targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil, resultHandler: {
                     ( finalImage, info ) in self.memePhoto.image = finalImage
+                    // set the text constraints according to the image size
+                    if let finalImage = finalImage, let _ = self.memePhoto.image {
+                        self.setConstraints(finalImage: finalImage)
+                    }
                 })
                 self.toggleTextFields(visible: true)
                 self.toggleButtons(enable: true)
@@ -165,6 +181,10 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         memePhoto.image = selectedImage
         self.toggleTextFields(visible: true)
         self.toggleButtons(enable: true)
+        // set the text constraints according to the image size
+        if let selectedImage = selectedImage, let _ = self.memePhoto.image {
+            self.setConstraints(finalImage: selectedImage)
+        }
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -248,6 +268,32 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func toggleButtons(enable: Bool) {
         self.cancelButton.isEnabled = enable
         self.shareButton.isEnabled = enable
+    }
+    
+    // setConstraints
+    // Update the text fields' constraints.
+    func setConstraints(finalImage: UIImage) {
+        // If the device is currently in portrait mode.
+        if UIDevice.current.orientation.isPortrait {
+            // If the image is in landscape mode (meaning, wider than its height), get its actual height on the device and set the constraints.
+            if(finalImage.size.width > finalImage.size.height) {
+                // The photo's height * its resize value (by how much it was resized in order to fit into the screen).
+                // Since landscape photos' width is always set to the maximum value the screen can afford (in portrait mode), the resize value is calculated by dividing the width of the UIImageView by the image's actual width.
+                let imageHeight = self.memePhoto.image!.size.height * (self.memePhoto.frame.width / self.memePhoto.image!.size.width)
+                self.topTextFieldConstraint.constant = -(imageHeight / 2) + 50
+                self.bottomTextFieldConstraint.constant = (imageHeight / 2) - 50
+            }
+            // If the image is in portrait mode (meaning, higher than its width), set the constraints according to the UIImageView's height.
+            else {
+                self.topTextFieldConstraint.constant = -(self.memePhoto.frame.height / 2) + 50
+                self.bottomTextFieldConstraint.constant = (self.memePhoto.frame.height / 2) - 50
+            }
+        }
+        // If the device is currently in landscape mode, set the text fields' constraits according to the UIImageView's height.
+        else {
+            self.topTextFieldConstraint.constant = -(self.memePhoto.frame.height / 2) + 40
+            self.bottomTextFieldConstraint.constant = (self.memePhoto.frame.height / 2) - 40
+        }
     }
 }
 
