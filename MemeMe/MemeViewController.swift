@@ -24,16 +24,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // MARK: View-related methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Top text field styling
-        topTextField.autocapitalizationType = .allCharacters
-        topTextField.text = "TOP"
-        topTextField.textAlignment = .center
-        topTextField.delegate = self
-        // Bottom text field styling
-        bottomTextField.autocapitalizationType = .allCharacters
-        bottomTextField.text = "BOTTOM"
-        bottomTextField.textAlignment = .center
-        bottomTextField.delegate = self
+        // Set up the text fields
+        setUpTextField(textField: topTextField, value: "TOP")
+        setUpTextField(textField: bottomTextField, value: "BOTTOM")
         NotificationCenter.default.addObserver(self, selector: #selector(moveView(keyboardNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
@@ -109,6 +102,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 PHImageManager.default().requestImage(for: image[0], targetSize: CGSize(width: 1000, height: 1000), contentMode: .aspectFit, options: nil, resultHandler: {
                     ( finalImage, info ) in self.memePhoto.image = finalImage
                 })
+                self.toggleTextFields(visible: true)
             }
         }
     }
@@ -166,10 +160,28 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         memePhoto.image = selectedImage
+        self.toggleTextFields(visible: true)
         picker.dismiss(animated: true, completion: nil)
     }
     
     // MARK: Textfield-related methods
+    // setUpTextField
+    // Sets up the text fields to their initial state.
+    func setUpTextField(textField: UITextField, value: String) {
+        textField.autocapitalizationType = .allCharacters
+        textField.textAlignment = .center
+        textField.isHidden = true
+        textField.text = value
+        textField.delegate = self
+    }
+    
+    // toggleTextFields
+    // Turns the text fields visible / hidden (depending on the user's state).
+    func toggleTextFields(visible: Bool) {
+        topTextField.isHidden = !visible
+        bottomTextField.isHidden = !visible
+    }
+    
     // textFieldShouldReturn
     // Protocol: UITextFieldDelegate
     // Dismisses the keyboard upon pressing 'return'
@@ -206,6 +218,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // Cancels the current edit.
     @IBAction func cancelMeme() {
         memePhoto.image = nil
+        self.toggleTextFields(visible: false)
     }
     
     // MARK: Convenience Methods
