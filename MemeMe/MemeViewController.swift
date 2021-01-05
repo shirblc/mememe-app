@@ -238,6 +238,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return meme
     }
     
+    // shareMeme
+    // Shares the current edit as an image.
+    @IBAction func shareMeme() {
+        let meme = createMeme()
+        let shareViewController = UIActivityViewController(activityItems: [ meme ], applicationActivities: nil)
+        present(shareViewController, animated: true, completion: nil)
+    }
+    
     // cancelMeme
     // Cancels the current edit.
     @IBAction func cancelMeme() {

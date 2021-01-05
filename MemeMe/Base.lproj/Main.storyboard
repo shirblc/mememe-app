@@ -47,6 +47,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="83" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" image="square.and.arrow.up" catalog="system"/>
+                                        <connections>
+                                            <action selector="shareMeme" destination="BYZ-38-t0r" eventType="touchUpInside" id="dvT-vk-rna"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wN-fj-QGt">
                                         <rect key="frame" x="331" y="0.0" width="83" height="33"/>
