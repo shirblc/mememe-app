@@ -16,9 +16,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var topTextField: UITextField!
     @IBOutlet var bottomTextField: UITextField!
     @IBOutlet var memeView: UIView!
+    
+    // Variables & Constants
     let userPhotoLibrary = PHPhotoLibrary.shared()
     var alertController = UIAlertController()
 
+    // MARK: View-related methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Top text field styling
@@ -182,7 +185,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let keyboard = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] {
             view.frame.origin.y -= (keyboard as? CGRect)?.height ?? 0
         }
-        
     }
     
     // MARK: Meme Methods
@@ -200,6 +202,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return meme
     }
     
+    // cancelMeme
+    // Cancels the current edit.
+    @IBAction func cancelMeme() {
+        memePhoto.image = nil
+    }
+    
     // MARK: Convenience Methods
     // createErrorAlert
     // Creates an error alert with the given message.
@@ -215,12 +223,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         present(alertController, animated: true, completion: nil)
-    }
-    
-    // cancelMeme
-    // Cancels the current edit.
-    @IBAction func cancelMeme() {
-        memePhoto.image = nil
     }
 }
 
