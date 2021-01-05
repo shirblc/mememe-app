@@ -227,11 +227,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // createMeme
     // Creates the meme based on the image and text currently onscreen.
     func createMeme() -> UIImage {
-        // Get the size of the view containing the image
-        let memeSize = CGRect(x: memeView.frame.origin.x, y: memeView.frame.origin.y, width: memeView.frame.width, height: memeView.frame.height)
         // Create the meme
-        UIGraphicsBeginImageContext(CGSize(width: memeView.frame.width, height: memeView.frame.width))
-        memeView.drawHierarchy(in: memeSize, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        memeView.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let meme = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
