@@ -16,6 +16,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet var topTextField: UITextField!
     @IBOutlet var bottomTextField: UITextField!
     @IBOutlet var memeView: UIView!
+    @IBOutlet var cancelButton: UIButton!
+    @IBOutlet var shareButton: UIButton!
     
     // Variables & Constants
     let userPhotoLibrary = PHPhotoLibrary.shared()
@@ -103,6 +105,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     ( finalImage, info ) in self.memePhoto.image = finalImage
                 })
                 self.toggleTextFields(visible: true)
+                self.toggleButtons(enable: true)
             }
         }
     }
@@ -161,6 +164,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         memePhoto.image = selectedImage
         self.toggleTextFields(visible: true)
+        self.toggleButtons(enable: true)
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -219,6 +223,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func cancelMeme() {
         memePhoto.image = nil
         self.toggleTextFields(visible: false)
+        self.toggleButtons(enable: false)
     }
     
     // MARK: Convenience Methods
@@ -236,6 +241,13 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    // toggleButtons
+    // Disables/enables the share and cancel buttons, depending on whether the user is editing an image.
+    func toggleButtons(enable: Bool) {
+        self.cancelButton.isEnabled = enable
+        self.shareButton.isEnabled = enable
     }
 }
 

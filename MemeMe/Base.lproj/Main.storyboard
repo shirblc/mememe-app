@@ -43,12 +43,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="248" translatesAutoresizingMaskIntoConstraints="NO" id="kWl-9W-tGq" userLabel="Top toolbar">
                                 <rect key="frame" x="0.0" y="49" width="414" height="33"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8y-Oo-9WD">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8y-Oo-9WD">
                                         <rect key="frame" x="0.0" y="0.0" width="83" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" image="square.and.arrow.up" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wN-fj-QGt">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wN-fj-QGt">
                                         <rect key="frame" x="331" y="0.0" width="83" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Cancel  "/>
@@ -111,8 +111,10 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="Zdc-0p-i2G" id="ky6-i8-T83"/>
+                        <outlet property="cancelButton" destination="9wN-fj-QGt" id="y7Y-c4-yNv"/>
                         <outlet property="memePhoto" destination="cxv-HW-ann" id="iXE-Py-nc0"/>
                         <outlet property="memeView" destination="35A-qj-Tab" id="Kyd-CF-MxB"/>
+                        <outlet property="shareButton" destination="N8y-Oo-9WD" id="Vyo-6h-gSg"/>
                         <outlet property="topTextField" destination="qlQ-dn-uwX" id="bsg-Ee-Msf"/>
                     </connections>
                 </viewController>
