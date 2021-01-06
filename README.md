@@ -8,9 +8,9 @@ MemeMe is an app designed to let you turn any photo into a meme. Simply open the
 
 - macOS
 - Xcode
-- Optional: an iPhone/iPad, if you want to test it on an actual device (rather than the simulator).
+- Optional: an iPhone/iPad running iOS/iPadOS 14 or above, if you want to test it on an actual device (rather than the simulator).
 
-* The app was tested on a device running the latest iOS 14.4 Developer Beta. It should work with versions prior to iOS 14, though, so if you encounter any issues, feel free to open an issue so that I can look into it.
+* The app was tested on a device running the latest iOS 14.4 Developer Beta.
 
 ## Installaton and Usage
 
