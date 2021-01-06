@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import PhotosUI
 
-class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UITextFieldDelegate {
+class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UITextFieldDelegate, LimitedLibraryViewControllerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var memePhoto: UIImageView!
@@ -83,9 +83,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             case .denied:
                 createErrorAlert(message: "Photos access has been denied. Please enable Photos access in Settings -> Privacy -> Photos.")
             // If the app has limited photo access, show the library.
-            // TODO: Display only selected assets
             case .limited:
-                openPhotos()
+                openLimitedPicker()
             // If Photos access has been restricted, alert the user.
             case .restricted:
                 createErrorAlert(message: "Photos access has been restricted. Please enable Photos access in Settings -> Privacy -> Photos.")
@@ -131,6 +130,42 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 self.toggleButtons(enable: true)
             }
         }
+    }
+    
+    // openLimitedPicker
+    // If the app was given limited Photos permission (iOS14+), shows the LimitedLibraryViewController. This controller automatically shows only assets to which the app was given permission.
+    func openLimitedPicker() {
+        var collectionView: LimitedLibraryViewController
+        collectionView = self.storyboard?.instantiateViewController(withIdentifier: "LimitedLibraryVC") as! LimitedLibraryViewController
+        collectionView.delegate = self
+        
+        present(collectionView, animated: true, completion: nil)
+    }
+    
+    // userDidSelectImage
+    // Protocol: LimitedLibraryViewControllerDelegate
+    // Responsible for handling the photo the user picked.
+    func userDidSelectImage(_ controller: LimitedLibraryViewController) {
+        if let image = controller.selectedImage {
+            PHImageManager.default().requestImage(for: image, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil, resultHandler: {
+                ( finalImage, info ) in self.memePhoto.image = finalImage
+                // set the text constraints according to the image size
+                if let finalImage = finalImage, let _ = self.memePhoto.image {
+                    self.setConstraints(finalImage: finalImage)
+                }
+            })
+            self.toggleTextFields(visible: true)
+            self.toggleButtons(enable: true)
+        }
+        
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    // userDidCancel
+    // Protocol: LimitedLibraryViewControllerDelegate
+    // Responsible for dismissing the LimitedLibraryViewController upon user cancellation.
+    func userDidCancel(_ controller: LimitedLibraryViewController, sender: Any) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
     // MARK: Meme from camera methods
