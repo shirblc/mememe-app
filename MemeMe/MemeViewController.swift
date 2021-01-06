@@ -148,14 +148,22 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func userDidSelectImage(_ controller: LimitedLibraryViewController) {
         if let image = controller.selectedImage {
             PHImageManager.default().requestImage(for: image, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil, resultHandler: {
-                ( finalImage, info ) in self.memePhoto.image = finalImage
-                // set the text constraints according to the image size
-                if let finalImage = finalImage, let _ = self.memePhoto.image {
-                    self.setConstraints(finalImage: finalImage)
+                ( finalImage, info ) in
+                // Check if the image is in the cloud; in limited library access the app can't fetch the full-size picture from the cloud, so the user needs to be alerted to download the photo and try again.
+                if let info = info, let _ = info[AnyHashable("PHImageResultIsInCloudKey")] {
+                    self.createErrorAlert(message: "The image is in the cloud. Please download it and then try again.")
+                }
+                // Otherwise, set the UI with the newly selected image
+                else {
+                    self.memePhoto.image = finalImage
+                    // set the text constraints according to the image size
+                    if let finalImage = finalImage, let _ = self.memePhoto.image {
+                        self.setConstraints(finalImage: finalImage)
+                    }
+                    self.toggleTextFields(visible: true)
+                    self.toggleButtons(enable: true)
                 }
             })
-            self.toggleTextFields(visible: true)
-            self.toggleButtons(enable: true)
         }
         
         controller.dismiss(animated: true, completion: nil)
