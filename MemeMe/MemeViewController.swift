@@ -73,14 +73,18 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             case .notDetermined:
                 PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { status in
                     if status == .authorized {
-                        self.openPhotos()
+                        DispatchQueue.main.async {
+                            self.openPhotos()
+                        }
                     }
                     else if status == .limited {
                         let selectPhotos = PHPhotoLibrary.shared()
                         selectPhotos.presentLimitedLibraryPicker(from: self)
                     }
                     else {
-                        self.createErrorAlert(message: "Photos access has been denied. Please enable Photos access in Settings -> Privacy -> Photos.")
+                        DispatchQueue.main.async {
+                            self.createErrorAlert(message: "Photos access has been denied. Please enable Photos access in Settings -> Privacy -> Photos.")
+                        }
                     }
                 })
             // If the user denied Photos access, alert the user they've denied permission.
@@ -195,10 +199,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 case .notDetermined:
                     AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { granted in
                         if granted {
-                            self.openCamera()
+                            DispatchQueue.main.async {
+                                self.openCamera()
+                            }
                         }
                         else {
-                            self.createErrorAlert(message: "Camera access has been denied. Please enable camera access in Settings -> Privacy -> Camera.")
+                            DispatchQueue.main.async {
+                                self.createErrorAlert(message: "Camera access has been denied. Please enable camera access in Settings -> Privacy -> Camera.")
+                            }
                         }
                     })
                 // If the user denied camera access, alert the user they've denied permission.
