@@ -247,6 +247,15 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         textField.isHidden = true
         textField.text = value
         textField.delegate = self
+        textField.textColor = .white
+        
+        let textFieldAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.strokeColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: "impact", size: 40),
+            NSAttributedString.Key.strokeWidth: -1
+        ]
+        textField.defaultTextAttributes = textFieldAttributes
     }
     
     // toggleTextFields
