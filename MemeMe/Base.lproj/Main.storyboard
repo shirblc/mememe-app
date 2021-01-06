@@ -165,9 +165,9 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEZ-mp-pyz">
-                                    <rect key="frame" x="249" y="8" width="137" height="34"/>
+                                    <rect key="frame" x="313" y="8" width="73" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <state key="normal" title="Choose Selected"/>
+                                    <state key="normal" title="Continue"/>
                                     <connections>
                                         <action selector="createMemeFromSelected:" destination="uLP-Rx-sd8" eventType="touchUpInside" id="5Lp-vQ-MHZ"/>
                                     </connections>
