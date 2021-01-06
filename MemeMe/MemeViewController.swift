@@ -277,7 +277,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // moveView
     // Moves the view to ensure the keyboard isn't covering the text field.
     @objc func moveView(keyboardNotification notification:Notification) {
-        if let keyboard = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] {
+        if let keyboard = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey], bottomTextField.isEditing {
             view.frame.origin.y -= (keyboard as? CGRect)?.height ?? 0
         }
     }
