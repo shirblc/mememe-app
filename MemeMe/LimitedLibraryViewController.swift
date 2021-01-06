@@ -27,6 +27,7 @@ class LimitedLibraryViewController: UICollectionViewController {
     var availableImages = PHAsset.fetchAssets(with: nil)
     var displayImages: [UIImage] = []
     var selectedImage: PHAsset?
+    var selectedImagePath: IndexPath?
     var delegate: LimitedLibraryViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -62,8 +63,8 @@ class LimitedLibraryViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
         // Fetch the image for the cell
-        let cellImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
-        PHImageManager.default().requestImage(for: availableImages[indexPath.item], targetSize: CGSize(width: 64, height: 64), contentMode: .default, options: nil, resultHandler: { (image, info) in
+        let cellImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
+        PHImageManager.default().requestImage(for: availableImages[indexPath.item], targetSize: CGSize(width: 90, height: 90), contentMode: .default, options: nil, resultHandler: { (image, info) in
             if let image = image {
                 cellImage.image = image
                 cellImage.contentMode = .center
@@ -78,6 +79,21 @@ class LimitedLibraryViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Remove the checkmark from the previous image's cell, if there was one.
+        if let selectedImagePath = selectedImagePath, let cell = collectionView.cellForItem(at: selectedImagePath) {
+            cell.subviews[1].removeFromSuperview()
+        }
+        
+        // If there's a cell in that index path, show a checkmark to let the user know it's selected.
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            let checkedIcon = UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(weight: .bold))
+            let checkedIconView = UIImageView(image: checkedIcon?.withRenderingMode(.alwaysTemplate))
+            checkedIconView.tintColor = UIColor(named: "checkmarkColour")
+            checkedIconView.frame = CGRect(x: 60, y: 60, width: 30, height: 28)
+            cell.addSubview(checkedIconView)
+        }
+        
+        self.selectedImagePath = indexPath
         self.selectedImage = self.availableImages[indexPath.item]
     }
 
