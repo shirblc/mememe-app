@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F08DE97225A602D800F44A1C /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F08DE97125A602D800F44A1C /* impact.ttf */; };
 		F0A18EF425A205AC0069E2CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A18EF325A205AC0069E2CE /* AppDelegate.swift */; };
 		F0A18EF625A205AC0069E2CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A18EF525A205AC0069E2CE /* SceneDelegate.swift */; };
 		F0A18EF825A205AC0069E2CE /* MemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A18EF725A205AC0069E2CE /* MemeViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F08DE97125A602D800F44A1C /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
 		F0A18EF025A205AC0069E2CE /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A18EF325A205AC0069E2CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0A18EF525A205AC0069E2CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F08DE97025A602C200F44A1C /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F08DE97125A602D800F44A1C /* impact.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		F0A18EE725A205AC0069E2CE = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		F0A18EF225A205AC0069E2CE /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				F08DE97025A602C200F44A1C /* fonts */,
 				F0A18EF325A205AC0069E2CE /* AppDelegate.swift */,
 				F0A18EF525A205AC0069E2CE /* SceneDelegate.swift */,
 				F0A18EF725A205AC0069E2CE /* MemeViewController.swift */,
@@ -237,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F08DE97225A602D800F44A1C /* impact.ttf in Resources */,
 				F0A18F0325A205AF0069E2CE /* LaunchScreen.storyboard in Resources */,
 				F0A18F0025A205AF0069E2CE /* Assets.xcassets in Resources */,
 				F0A18EFB25A205AC0069E2CE /* Main.storyboard in Resources */,
