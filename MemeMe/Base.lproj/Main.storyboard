@@ -71,8 +71,11 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cxv-HW-ann">
                                         <rect key="frame" x="0.0" y="26" width="414" height="684"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" clearsOnBeginEditing="YES" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="qlQ-dn-uwX">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="qlQ-dn-uwX">
                                         <rect key="frame" x="196.5" y="53" width="22.5" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="22.5" id="eRA-09-fVT"/>
+                                        </constraints>
                                         <attributedString key="attributedText">
                                             <fragment content="TOP">
                                                 <attributes>
@@ -84,8 +87,11 @@
                                         </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" clearsOnBeginEditing="YES" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="Zdc-0p-i2G">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Zdc-0p-i2G">
                                         <rect key="frame" x="183" y="668" width="48" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="48" id="orj-21-QkX"/>
+                                        </constraints>
                                         <attributedString key="attributedText">
                                             <fragment content="BOTTOM">
                                                 <attributes>
@@ -130,12 +136,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomTFWidthConstraint" destination="orj-21-QkX" id="BNl-6j-XG3"/>
                         <outlet property="bottomTextField" destination="Zdc-0p-i2G" id="ky6-i8-T83"/>
                         <outlet property="bottomTextFieldConstraint" destination="FWM-xt-7SL" id="7R1-oG-afR"/>
                         <outlet property="cancelButton" destination="9wN-fj-QGt" id="y7Y-c4-yNv"/>
                         <outlet property="memePhoto" destination="cxv-HW-ann" id="iXE-Py-nc0"/>
                         <outlet property="memeView" destination="35A-qj-Tab" id="Kyd-CF-MxB"/>
                         <outlet property="shareButton" destination="N8y-Oo-9WD" id="Vyo-6h-gSg"/>
+                        <outlet property="topTFWidthConstraint" destination="eRA-09-fVT" id="kGs-nQ-cbu"/>
                         <outlet property="topTextField" destination="qlQ-dn-uwX" id="bsg-Ee-Msf"/>
                         <outlet property="topTextFieldConstraint" destination="VO1-At-xm5" id="04P-Rx-3t1"/>
                     </connections>

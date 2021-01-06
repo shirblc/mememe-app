@@ -20,6 +20,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var topTextFieldConstraint: NSLayoutConstraint!
     @IBOutlet var bottomTextFieldConstraint: NSLayoutConstraint!
+    @IBOutlet var topTFWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomTFWidthConstraint: NSLayoutConstraint!
     
     // Variables & Constants
     let userPhotoLibrary = PHPhotoLibrary.shared()
@@ -51,6 +53,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         coordinator.animate(alongsideTransition: nil, completion: {
             _ in if let image = self.memePhoto.image {
                 self.setConstraints(finalImage: image)
+                self.updateTextFieldWidth(textFieldConstraint: self.topTFWidthConstraint)
+                self.updateTextFieldWidth(textFieldConstraint: self.bottomTFWidthConstraint)
             }
         })
     }
@@ -252,10 +256,11 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let textFieldAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.black,
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "impact", size: 40),
+            NSAttributedString.Key.font: UIFont(name: "impact", size: 40)!,
             NSAttributedString.Key.strokeWidth: -1
         ]
         textField.defaultTextAttributes = textFieldAttributes
+        textField.adjustsFontSizeToFitWidth = true
     }
     
     // toggleTextFields
@@ -263,6 +268,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func toggleTextFields(visible: Bool) {
         topTextField.isHidden = !visible
         bottomTextField.isHidden = !visible
+        
+        // If the text fields should be visible
+        if visible {
+            updateTextFieldWidth(textFieldConstraint: topTFWidthConstraint)
+            updateTextFieldWidth(textFieldConstraint: bottomTFWidthConstraint)
+        }
     }
     
     // textFieldShouldReturn
@@ -280,6 +291,24 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if let keyboard = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey], bottomTextField.isEditing {
             view.frame.origin.y -= (keyboard as? CGRect)?.height ?? 0
         }
+    }
+    
+    // updateTextFieldWidth
+    // Updates the width constraint for the given text field (based on the image's width).
+    func updateTextFieldWidth(textFieldConstraint: NSLayoutConstraint) {
+        var imageWidth: CGFloat;
+        
+        // If the relation between the image's and the UIImageView's widths is larger than the one between their heights, that means the image's height is maxed. Thus, the actual width should be calculated using the heights.
+        if self.memePhoto.frame.width / self.memePhoto.image!.size.width > self.memePhoto.frame.height / self.memePhoto.image!.size.height {
+            // Get the actual width of the image on the screen.
+            imageWidth = self.memePhoto.image!.size.width * (self.memePhoto.frame.height / self.memePhoto.image!.size.height)
+        }
+        // Otherwise, it's the width that's maxed, so just use the UIImageView's width.
+        else {
+            imageWidth = self.memePhoto.frame.width
+        }
+        
+        textFieldConstraint.constant = imageWidth
     }
     
     // MARK: Meme Methods
