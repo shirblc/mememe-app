@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -126,6 +127,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
+        </scene>
+        <!--Limited Library View Controller-->
+        <scene sceneID="qTr-fo-I6U">
+            <objects>
+                <collectionViewController storyboardIdentifier="LimitedLibraryVC" id="uLP-Rx-sd8" customClass="LimitedLibraryViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="1bs-oA-y8L">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ecL-G4-oJ3">
+                            <size key="itemSize" width="64" height="64"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="Cell" id="VMZ-K2-o1i">
+                                <rect key="frame" x="0.0" y="50" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sKF-Zt-Zry">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="headerView" id="Q5B-zd-5RY">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6l-fP-PM3">
+                                    <rect key="frame" x="28" y="8" width="56" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="Cancel"/>
+                                    <connections>
+                                        <action selector="cancelSelection:" destination="uLP-Rx-sd8" eventType="touchUpInside" id="x9Q-A5-bai"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEZ-mp-pyz">
+                                    <rect key="frame" x="249" y="8" width="137" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="Choose Selected"/>
+                                    <connections>
+                                        <action selector="createMemeFromSelected:" destination="uLP-Rx-sd8" eventType="touchUpInside" id="5Lp-vQ-MHZ"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="rEZ-mp-pyz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="w6l-fP-PM3" secondAttribute="trailing" constant="8" symbolic="YES" id="4kG-8I-8H8"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="rEZ-mp-pyz" secondAttribute="trailing" constant="20" id="H3r-M5-RcF"/>
+                                <constraint firstItem="w6l-fP-PM3" firstAttribute="centerY" secondItem="Q5B-zd-5RY" secondAttribute="centerY" id="RXd-xc-6PA"/>
+                                <constraint firstItem="rEZ-mp-pyz" firstAttribute="centerY" secondItem="Q5B-zd-5RY" secondAttribute="centerY" id="bgK-cW-dDW"/>
+                                <constraint firstItem="w6l-fP-PM3" firstAttribute="leading" secondItem="Q5B-zd-5RY" secondAttribute="leadingMargin" constant="20" id="lc6-f2-9ET"/>
+                            </constraints>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="uLP-Rx-sd8" id="Tnd-Wb-2nZ"/>
+                            <outlet property="delegate" destination="uLP-Rx-sd8" id="qSJ-Bj-03K"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k0f-4G-ztP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="811.59420289855075" y="79.6875"/>
         </scene>
     </scenes>
     <resources>

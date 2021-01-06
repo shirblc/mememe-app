@@ -16,6 +16,7 @@
 		F0A18F0325A205AF0069E2CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A18F0125A205AF0069E2CE /* LaunchScreen.storyboard */; };
 		F0A18F0E25A205AF0069E2CE /* MemeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A18F0D25A205AF0069E2CE /* MemeMeTests.swift */; };
 		F0A18F1925A205B00069E2CE /* MemeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A18F1825A205B00069E2CE /* MemeMeUITests.swift */; };
+		F0F171DD25A508A600452137 /* LimitedLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F171DC25A508A600452137 /* LimitedLibraryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		F0A18F1425A205B00069E2CE /* MemeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemeMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A18F1825A205B00069E2CE /* MemeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeUITests.swift; sourceTree = "<group>"; };
 		F0A18F1A25A205B00069E2CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0F171DC25A508A600452137 /* LimitedLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				F0A18EF525A205AC0069E2CE /* SceneDelegate.swift */,
 				F0A18EF725A205AC0069E2CE /* MemeViewController.swift */,
 				F0A18EF925A205AC0069E2CE /* Main.storyboard */,
+				F0F171DC25A508A600452137 /* LimitedLibraryViewController.swift */,
 				F0A18EFF25A205AF0069E2CE /* Assets.xcassets */,
 				F0A18F0125A205AF0069E2CE /* LaunchScreen.storyboard */,
 				F0A18F0425A205AF0069E2CE /* Info.plist */,
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F171DD25A508A600452137 /* LimitedLibraryViewController.swift in Sources */,
 				F0A18EF825A205AC0069E2CE /* MemeViewController.swift in Sources */,
 				F0A18EFE25A205AC0069E2CE /* MemeMe.xcdatamodeld in Sources */,
 				F0A18EF425A205AC0069E2CE /* AppDelegate.swift in Sources */,
