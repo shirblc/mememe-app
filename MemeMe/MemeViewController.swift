@@ -291,9 +291,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func shareMeme() {
         let meme = createMeme()
         let shareViewController = UIActivityViewController(activityItems: [ meme ], applicationActivities: nil)
-        present(shareViewController, animated: true, completion: {
-            self.myMemes.append(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme))
-        })
+        // Only save the meme if the meme was shared.
+        shareViewController.completionWithItemsHandler = {
+            (activity, completed, info, error) in
+            if completed {
+                self.myMemes.append(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme))
+            }
+        }
+        present(shareViewController, animated: true, completion: nil)
     }
     
     // cancelMeme
