@@ -39,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		F08DE97125A602D800F44A1C /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
+		F08DE97625A6201A00F44A1C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F0A18EF025A205AC0069E2CE /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A18EF325A205AC0069E2CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0A18EF525A205AC0069E2CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		F0A18EE725A205AC0069E2CE = {
 			isa = PBXGroup;
 			children = (
+				F08DE97625A6201A00F44A1C /* README.md */,
 				F0A18EF225A205AC0069E2CE /* MemeMe */,
 				F0A18F0C25A205AF0069E2CE /* MemeMeTests */,
 				F0A18F1725A205B00069E2CE /* MemeMeUITests */,
