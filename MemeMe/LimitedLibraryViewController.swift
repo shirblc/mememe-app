@@ -79,6 +79,17 @@ class LimitedLibraryViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Check if the user is tapping the same cell; if so, deselect it and set the screen appropriately
+        if let previousPath = self.selectedImagePath, indexPath == previousPath {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            if let cell = collectionView.cellForItem(at: indexPath) {
+                cell.subviews[1].removeFromSuperview()
+            }
+            self.selectedImagePath = nil
+            self.selectedImage = nil
+            return
+        }
+        
         // Remove the checkmark from the previous image's cell, if there was one.
         if let selectedImagePath = selectedImagePath, let cell = collectionView.cellForItem(at: selectedImagePath) {
             cell.subviews[1].removeFromSuperview()
