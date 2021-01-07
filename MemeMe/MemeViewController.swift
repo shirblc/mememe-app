@@ -25,8 +25,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     // Variables & Constants
     let userPhotoLibrary = PHPhotoLibrary.shared()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var alertController = UIAlertController()
-    var myMemes: [Meme] = []
 
     // MARK: View-related methods
     override func viewDidLoad() {
@@ -336,7 +336,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         shareViewController.completionWithItemsHandler = {
             (activity, completed, info, error) in
             if completed {
-                self.myMemes.append(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme))
+                self.appDelegate.memes.append(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme))
             }
         }
         present(shareViewController, animated: true, completion: nil)
