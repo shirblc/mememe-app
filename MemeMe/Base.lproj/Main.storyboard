@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="c1C-uS-fL6">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sentMemeRow" id="c1C-uS-fL6">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c1C-uS-fL6" id="rQT-RC-Gyy">
@@ -34,7 +34,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="aN2-e7-KQJ"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="O1h-1P-YmV"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="addMemeSegue" id="O1h-1P-YmV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGG-8Z-UKe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -90,7 +90,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="I30-Z3-vRa">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sentMemeCell" id="I30-Z3-vRa">
                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qCt-FH-yc7">
@@ -106,7 +106,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="Q7F-MU-8Bc"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="BYU-uc-Ld5"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="addMemeSegue" id="BYU-uc-Ld5"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSY-9w-0jS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -255,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="93.75"/>
+            <point key="canvasLocation" x="1006" y="100"/>
         </scene>
         <!--Limited Library View Controller-->
         <scene sceneID="qTr-fo-I6U">
