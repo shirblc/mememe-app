@@ -27,12 +27,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     let userPhotoLibrary = PHPhotoLibrary.shared()
     var alertController = UIAlertController()
     var myMemes: [Meme] = []
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage
-        var finalMeme: UIImage
-    }
 
     // MARK: View-related methods
     override func viewDidLoad() {
