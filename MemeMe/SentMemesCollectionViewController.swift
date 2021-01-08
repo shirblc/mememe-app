@@ -30,7 +30,8 @@ class SentMemesCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        let memeView = UIImageView(image: appDelegate.memes[indexPath.item].finalMeme)
+        let memeView = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
+        memeView.image = appDelegate.memes[indexPath.item].finalMeme
         memeView.contentMode = .scaleAspectFit
         cell.addSubview(memeView)
         
