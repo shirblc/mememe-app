@@ -7,7 +7,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "sentMemeCell"
+private let reuseIdentifier = "sentMemeRow"
 
 class SentMemesTableViewController: UITableViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
