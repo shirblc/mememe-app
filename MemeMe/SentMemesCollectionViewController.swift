@@ -17,7 +17,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeme(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .edit)
     }
 
@@ -49,5 +49,11 @@ class SentMemesCollectionViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+    }
+    
+    // MARK: UI Actions
+    
+    @objc func addMeme(_ sender: Any) {
+        performSegue(withIdentifier: "addMemeSegue", sender: sender)
     }
 }
