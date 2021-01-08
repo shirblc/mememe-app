@@ -30,7 +30,7 @@ class SentMemesTableViewController: UITableViewController {
         let meme = appDelegate.memes[indexPath.item]
         
         cell.imageView?.image = meme.finalMeme
-        cell.textLabel?.text = meme.topText + meme.topText
+        cell.textLabel?.text = meme.topText + " " + meme.bottomText
 
         return cell
     }
