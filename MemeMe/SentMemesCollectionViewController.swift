@@ -10,6 +10,7 @@ import UIKit
 private let reuseIdentifier = "sentMemeCell"
 
 class SentMemesCollectionViewController: UICollectionViewController {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +24,16 @@ class SentMemesCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return appDelegate.memes.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        
+        let memeView = UIImageView(image: appDelegate.memes[indexPath.item].finalMeme)
+        memeView.contentMode = .scaleAspectFit
+        cell.addSubview(memeView)
+        
         return cell
     }
 

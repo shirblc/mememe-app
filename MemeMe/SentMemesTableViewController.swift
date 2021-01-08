@@ -10,6 +10,7 @@ import UIKit
 private let reuseIdentifier = "sentMemeCell"
 
 class SentMemesTableViewController: UITableViewController {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +21,15 @@ class SentMemesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return appDelegate.memes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-
-        // Configure the cell...
+        let meme = appDelegate.memes[indexPath.item]
+        
+        cell.imageView?.image = meme.finalMeme
+        cell.textLabel?.text = meme.topText + meme.topText
 
         return cell
     }
