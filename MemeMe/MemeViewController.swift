@@ -372,6 +372,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         memePhoto.image = nil
         self.toggleTextFields(visible: false)
         self.toggleButtons(enable: false)
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: Convenience Methods
