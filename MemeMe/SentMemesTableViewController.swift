@@ -14,6 +14,7 @@ class SentMemesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeme(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .edit)
     }
