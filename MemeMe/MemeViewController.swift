@@ -40,6 +40,29 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // If the user is going back to the root view controller, reload the table/collection's data.
+        if(self.isMovingFromParent) {
+            let rootViewController = self.navigationController?.viewControllers[0]
+            var tabBarController: UITabBarController
+            
+            // If the root view controller is the table view, set the tab bar controller to its tab bar controller
+            if rootViewController is SentMemesTableViewController {
+                tabBarController = (rootViewController as! SentMemesTableViewController).tabBarController!
+            }
+            // Otherwise it's the collection view controller, so set the tab bar controller to its tab bar controller
+            else {
+                tabBarController = (rootViewController as! SentMemesCollectionViewController).tabBarController!
+            }
+            
+            // Get the table and collection view. The Sent Memes View Controllers are root VCs of navigation controllers, which are in turn controlled by a tab bar controller For each controller. So in order to get to the Sent Memes VC, we need to get through the Tab Bar Controller and then the UI Navigation Controller in order to get to the Sent Memes controller.
+            let tableViewController = ((tabBarController.viewControllers![0]) as! UINavigationController).viewControllers[0] as! SentMemesTableViewController
+            let collectionViewController = ((tabBarController.viewControllers![1]) as! UINavigationController).viewControllers[0] as! SentMemesCollectionViewController
+            
+            // Reload both the table's and the collection's data.
+            tableViewController.tableView.reloadData()
+            collectionViewController.collectionView.reloadData()
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -337,6 +360,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             (activity, completed, info, error) in
             if completed {
                 self.appDelegate.memes.append(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme))
+                print(self.appDelegate.memes)
             }
         }
         present(shareViewController, animated: true, completion: nil)
