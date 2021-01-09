@@ -72,7 +72,7 @@
         <scene sceneID="82T-wP-UjH">
             <objects>
                 <navigationController title="Sent Memes" id="95t-Zo-eZi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="square.grid.3x3.fill" catalog="system" id="zXo-xS-GuL"/>
+                    <tabBarItem key="tabBarItem" title="" image="square.grid.3x3.fill" catalog="system" id="zXo-xS-GuL"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZDQ-OR-uB0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -280,7 +280,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Odj-oE-uSd" userLabel="Top toolbar">
                                 <rect key="frame" x="364" y="88" width="50" height="35"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCN-oL-9qn">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCN-oL-9qn">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" image="square.and.arrow.up" catalog="system"/>
