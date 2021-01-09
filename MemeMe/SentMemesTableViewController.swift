@@ -21,7 +21,7 @@ class SentMemesTableViewController: UITableViewController {
         
         // Register navigation bar items
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeme(_:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .edit)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEdit(_:)))
     }
 
     // MARK: - Table view data source
@@ -42,19 +42,21 @@ class SentMemesTableViewController: UITableViewController {
         return cell
     }
 
-    // Override to support editing the table view.
+    // Handles deleting a row (in editing mode).
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            appDelegate.memes.remove(at: indexPath.item)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
-    // Override to support rearranging the table view.
+    // Handle moving rows in editing mode.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        let memeToMove = appDelegate.memes[fromIndexPath.item]
+        appDelegate.memes.remove(at: fromIndexPath.item)
+        appDelegate.memes.insert(memeToMove, at: to.item)
+        tableView.reloadData()
     }
     
     // Handle row selection
@@ -82,5 +84,12 @@ class SentMemesTableViewController: UITableViewController {
     @objc func addMeme(_ sender: Any) {
         selectedMeme = nil
         performSegue(withIdentifier: "addMemeSegue", sender: sender)
+    }
+    
+    // toggleEdit
+    // Start or end editing mode (depending on the user's current state).
+    @objc func toggleEdit(_ sender: Any) {
+        self.isEditing = !self.isEditing
+        self.navigationItem.leftBarButtonItem?.title = self.isEditing ? "Done" : "Edit"
     }
 }
