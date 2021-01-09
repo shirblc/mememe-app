@@ -332,7 +332,15 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         shareViewController.completionWithItemsHandler = {
             (activity, completed, info, error) in
             if completed {
-                self.appDelegate.memes.append(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme))
+                // If the user is editing an existing meme, edit the object.
+                if self.memeIndex != nil {
+                    self.appDelegate.memes.remove(at: self.memeIndex!)
+                    self.appDelegate.memes.insert(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme), at: self.memeIndex!)
+                }
+                // Otherwise add a new one to the collection.
+                else {
+                    self.appDelegate.memes.append(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme))
+                }
             }
         }
         present(shareViewController, animated: true, completion: nil)
