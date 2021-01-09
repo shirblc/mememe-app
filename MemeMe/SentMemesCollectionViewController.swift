@@ -21,7 +21,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
         
         // Register navigation bar items
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeme(_:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .edit)
     }
 
     // MARK: UICollectionViewDataSource
