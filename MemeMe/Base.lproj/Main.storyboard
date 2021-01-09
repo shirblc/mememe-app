@@ -325,6 +325,7 @@
                     <navigationItem key="navigationItem" id="4uR-DG-ANU"/>
                     <connections>
                         <outlet property="memePhotoView" destination="rcX-8A-Gcx" id="EyC-cK-ghp"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="editMemeSegue" id="X7m-yt-Pft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAL-fb-7AV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -392,7 +393,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0f-4G-ztP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1721.7391304347827" y="79.6875"/>
+            <point key="canvasLocation" x="2058" y="105"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rDI-93-lb5">
@@ -416,7 +417,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="qry-EN-xuw"/>
-        <segue reference="BYU-uc-Ld5"/>
+        <segue reference="X7m-yt-Pft"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
