@@ -48,16 +48,16 @@ class SentMemesCollectionViewController: UICollectionViewController {
     // Handles meme selection
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedMeme = indexPath.item
-        performSegue(withIdentifier: "addMemeSegue", sender: self)
+        performSegue(withIdentifier: "viewMemeSegue", sender: self)
     }
     
     // MARK: - Navigation
 
     // Prepare for segue to MemeViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // If the segue is to view/edit an existing meme, set the meme's index in the MemeViewController's property
-        if let selectedMeme = selectedMeme {
-            let detailView = segue.destination as! MemeViewController
+        // If the segue is to view an existing meme, set the meme's index in the MemeViewController's property
+        if segue.identifier == "viewMemeSegue" {
+            let detailView = segue.destination as! MemeDetailViewController
             detailView.memeIndex = selectedMeme
         }
     }

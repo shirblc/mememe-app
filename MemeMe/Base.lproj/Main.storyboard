@@ -44,7 +44,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="aN2-e7-KQJ"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="addMemeSegue" id="O1h-1P-YmV"/>
-                        <segue destination="jnE-RB-3dP" kind="show" id="vnQ-eE-b6w"/>
+                        <segue destination="jnE-RB-3dP" kind="show" identifier="viewMemeSegue" id="vnQ-eE-b6w"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGG-8Z-UKe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -117,7 +117,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="Q7F-MU-8Bc"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="addMemeSegue" id="BYU-uc-Ld5"/>
-                        <segue destination="jnE-RB-3dP" kind="show" id="qry-EN-xuw"/>
+                        <segue destination="jnE-RB-3dP" kind="show" identifier="viewMemeSegue" id="qry-EN-xuw"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSY-9w-0jS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -324,7 +324,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4uR-DG-ANU"/>
                     <connections>
-                        <outlet property="memePhotoView" destination="rcX-8A-Gcx" id="zl3-6k-JF0"/>
+                        <outlet property="memePhotoView" destination="rcX-8A-Gcx" id="EyC-cK-ghp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAL-fb-7AV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -415,7 +415,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vnQ-eE-b6w"/>
+        <segue reference="qry-EN-xuw"/>
         <segue reference="BYU-uc-Ld5"/>
     </inferredMetricsTieBreakers>
     <resources>
