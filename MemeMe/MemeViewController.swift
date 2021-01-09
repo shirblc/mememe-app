@@ -40,6 +40,10 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         setUpTextField(textField: topTextField, value: topText)
         setUpTextField(textField: bottomTextField, value: bottomText)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         // Set up the existing meme, if there is one
         if let memeIndex = memeIndex, memeIndex < appDelegate.memes.count {
@@ -79,7 +83,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewWillTransition(to: size, with: coordinator)
         // Once the transition has completed, update the text fields' constraints to ensure they're shown correctly.
         coordinator.animate(alongsideTransition: nil, completion: {
-            _ in if let image = self.memePhoto.image {
+            _ in if let _ = self.memePhoto.image {
                 self.setConstraints()
             }
         })
@@ -329,7 +333,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             (activity, completed, info, error) in
             if completed {
                 self.appDelegate.memes.append(Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memePhoto.image!, finalMeme: meme))
-                print(self.appDelegate.memes)
             }
         }
         present(shareViewController, animated: true, completion: nil)
