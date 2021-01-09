@@ -80,9 +80,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         // Once the transition has completed, update the text fields' constraints to ensure they're shown correctly.
         coordinator.animate(alongsideTransition: nil, completion: {
             _ in if let image = self.memePhoto.image {
-                self.setConstraints(finalImage: image)
-                self.updateTextFieldWidth(textFieldConstraint: self.topTFWidthConstraint)
-                self.updateTextFieldWidth(textFieldConstraint: self.bottomTFWidthConstraint)
+                self.setConstraints()
             }
         })
     }
@@ -308,24 +306,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    // updateTextFieldWidth
-    // Updates the width constraint for the given text field (based on the image's width).
-    func updateTextFieldWidth(textFieldConstraint: NSLayoutConstraint) {
-        var imageWidth: CGFloat;
-        
-        // If the relation between the image's and the UIImageView's widths is larger than the one between their heights, that means the image's height is maxed. Thus, the actual width should be calculated using the heights.
-        if self.memePhoto.frame.width / self.memePhoto.image!.size.width > self.memePhoto.frame.height / self.memePhoto.image!.size.height {
-            // Get the actual width of the image on the screen.
-            imageWidth = self.memePhoto.image!.size.width * (self.memePhoto.frame.height / self.memePhoto.image!.size.height)
-        }
-        // Otherwise, it's the width that's maxed, so just use the UIImageView's width.
-        else {
-            imageWidth = self.memePhoto.frame.width
-        }
-        
-        textFieldConstraint.constant = imageWidth
-    }
-    
     // MARK: Meme Methods
     // createMeme
     // Creates the meme based on the image and text currently onscreen.
@@ -394,28 +374,31 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     // setConstraints
     // Update the text fields' constraints.
-    func setConstraints(finalImage: UIImage) {
-        // If the device is currently in portrait mode.
-        if self.view.frame.height > self.view.frame.width {
-            // If the image is in landscape mode (meaning, wider than its height), get its actual height on the device and set the constraints.
-            if(finalImage.size.width > finalImage.size.height) {
-                // The photo's height * its resize value (by how much it was resized in order to fit into the screen).
-                // Since landscape photos' width is always set to the maximum value the screen can afford (in portrait mode), the resize value is calculated by dividing the width of the UIImageView by the image's actual width.
-                let imageHeight = self.memePhoto.image!.size.height * (self.memePhoto.frame.width / self.memePhoto.image!.size.width)
-                self.topTextFieldConstraint.constant = -(imageHeight / 2) + 50
-                self.bottomTextFieldConstraint.constant = (imageHeight / 2) - 50
-            }
-            // If the image is in portrait mode (meaning, higher than its width), set the constraints according to the UIImageView's height.
-            else {
-                self.topTextFieldConstraint.constant = -(self.memePhoto.frame.height / 2) + 50
-                self.bottomTextFieldConstraint.constant = (self.memePhoto.frame.height / 2) - 50
-            }
+    func setConstraints() {
+        var imageWidth: CGFloat;
+        var imageHeight: CGFloat;
+        
+        // If the relation between the image's and the UIImageView's widths is larger than the one between their heights, that means the image's height is maxed. Thus, the actual width should be calculated using the heights.
+        // In that case, the image's height will be identical to the frame's height.
+        if self.memePhoto.frame.width / self.memePhoto.image!.size.width > self.memePhoto.frame.height / self.memePhoto.image!.size.height {
+            // Get the actual width of the image on the screen.
+            imageWidth = self.memePhoto.image!.size.width * (self.memePhoto.frame.height / self.memePhoto.image!.size.height)
+            imageHeight = self.memePhoto.frame.height
         }
-        // If the device is currently in landscape mode, set the text fields' constraits according to the UIImageView's height.
+        // Otherwise, it's the width that's maxed, so just use the UIImageView's width.
+        // In this case, the photo's height is calculated with: The photo's height * its resize value (by how much it was resized in order to fit into the screen). The resize value is calculated by dividing the width of the UIImageView by the image's actual width.
         else {
-            self.topTextFieldConstraint.constant = -(self.memePhoto.frame.height / 2) + 40
-            self.bottomTextFieldConstraint.constant = (self.memePhoto.frame.height / 2) - 40
+            imageWidth = self.memePhoto.frame.width
+            // Get the actual height of the image on the screen.
+            imageHeight = self.memePhoto.image!.size.height * (self.memePhoto.frame.width / self.memePhoto.image!.size.width)
         }
+        
+        // Set the width constraints.
+        self.topTFWidthConstraint.constant = imageWidth
+        self.bottomTFWidthConstraint.constant = imageWidth
+        // Set the distance constraints to place the text fields appropriately.
+        self.topTextFieldConstraint.constant = -(imageHeight / 2) + 50
+        self.bottomTextFieldConstraint.constant = (imageHeight / 2) - 50
     }
     
     // setUpMemeArea
@@ -425,10 +408,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         // set the text constraints according to the image size
         if let _ = self.memePhoto.image {
-            self.setConstraints(finalImage: finalImage)
+            self.setConstraints()
         }
-        updateTextFieldWidth(textFieldConstraint: topTFWidthConstraint)
-        updateTextFieldWidth(textFieldConstraint: bottomTFWidthConstraint)
         
         // Enable the text fields and buttons
         self.toggleUI(enable: true)
