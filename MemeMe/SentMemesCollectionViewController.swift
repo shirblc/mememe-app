@@ -18,6 +18,8 @@ class SentMemesCollectionViewController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        // Register navigation bar items
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeme(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .edit)
     }
@@ -28,9 +30,11 @@ class SentMemesCollectionViewController: UICollectionViewController {
         return appDelegate.memes.count
     }
 
+    // Set up the collection view cells
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
+        // Set the meme image 
         let memeView = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
         memeView.image = appDelegate.memes[indexPath.item].finalMeme
         memeView.contentMode = .scaleAspectFit
@@ -47,15 +51,16 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     // Handles meme selection
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Trigger the segue to the the MemeDetail screen
         selectedMeme = indexPath.item
         performSegue(withIdentifier: "viewMemeSegue", sender: self)
     }
     
     // MARK: - Navigation
 
-    // Prepare for segue to MemeViewController
+    // Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // If the segue is to view an existing meme, set the meme's index in the MemeViewController's property
+        // If the segue is to view an existing meme, set the meme's index in the MemeDetailViewController's property
         if segue.identifier == "viewMemeSegue" {
             let detailView = segue.destination as! MemeDetailViewController
             detailView.memeIndex = selectedMeme
@@ -64,6 +69,8 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     // MARK: UI Actions
     
+    // addMeme
+    // Triggers the segue to the MemeEdit view in order to create a new meme.
     @objc func addMeme(_ sender: Any) {
         selectedMeme = nil
         performSegue(withIdentifier: "addMemeSegue", sender: sender)
