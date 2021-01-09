@@ -32,21 +32,18 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // MARK: View-related methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set up the text fields
-        setUpTextField(textField: topTextField, value: "TOP")
-        setUpTextField(textField: bottomTextField, value: "BOTTOM")
         NotificationCenter.default.addObserver(self, selector: #selector(moveView(keyboardNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // Set up the text fields
+        let topText: String = (memeIndex != nil && memeIndex! < appDelegate.memes.count) ? appDelegate.memes[memeIndex!].topText : "TOP"
+        let bottomText: String = (memeIndex != nil && memeIndex! < appDelegate.memes.count) ? appDelegate.memes[memeIndex!].bottomText : "BOTTOM"
+        
+        setUpTextField(textField: topTextField, value: topText)
+        setUpTextField(textField: bottomTextField, value: bottomText)
         
         // Set up the existing meme, if there is one
         if let memeIndex = memeIndex, memeIndex < appDelegate.memes.count {
-            self.memePhoto.image = appDelegate.memes[memeIndex].originalImage
-            self.topTextField.text = appDelegate.memes[memeIndex].topText
-            self.bottomTextField.text = appDelegate.memes[memeIndex].bottomText
-            self.toggleTextFields(visible: true)
-            self.toggleButtons(enable: true)
-            self.setConstraints(finalImage: appDelegate.memes[memeIndex].originalImage)
-            self.updateTextFieldWidth(textFieldConstraint: self.topTFWidthConstraint)
-            self.updateTextFieldWidth(textFieldConstraint: self.bottomTFWidthConstraint)
+            setUpMemeArea(finalImage: appDelegate.memes[memeIndex].originalImage)
         }
     }
     
@@ -159,14 +156,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 // Fetch the selected photo and display it
                 let image = PHAsset.fetchAssets(withLocalIdentifiers: [ asset ], options: nil)
                 PHImageManager.default().requestImage(for: image[0], targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil, resultHandler: {
-                    ( finalImage, info ) in self.memePhoto.image = finalImage
-                    // set the text constraints according to the image size
-                    if let finalImage = finalImage, let _ = self.memePhoto.image {
-                        self.setConstraints(finalImage: finalImage)
+                    ( finalImage, info ) in
+                    // set up the meme area
+                    if let finalImage = finalImage {
+                        self.setUpMemeArea(finalImage: finalImage)
                     }
                 })
-                self.toggleTextFields(visible: true)
-                self.toggleButtons(enable: true)
             }
         }
     }
@@ -194,13 +189,10 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 }
                 // Otherwise, set the UI with the newly selected image
                 else {
-                    self.memePhoto.image = finalImage
-                    // set the text constraints according to the image size
-                    if let finalImage = finalImage, let _ = self.memePhoto.image {
-                        self.setConstraints(finalImage: finalImage)
+                    // set up the meme area
+                    if let finalImage = finalImage {
+                        self.setUpMemeArea(finalImage: finalImage)
                     }
-                    self.toggleTextFields(visible: true)
-                    self.toggleButtons(enable: true)
                 }
             })
         }
@@ -271,12 +263,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // Gets the selected image and dismisses the picker.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        memePhoto.image = selectedImage
-        self.toggleTextFields(visible: true)
-        self.toggleButtons(enable: true)
-        // set the text constraints according to the image size
-        if let selectedImage = selectedImage, let _ = self.memePhoto.image {
-            self.setConstraints(finalImage: selectedImage)
+        // set up the meme area
+        if let selectedImage = selectedImage {
+            setUpMemeArea(finalImage: selectedImage)
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -300,19 +289,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         ]
         textField.defaultTextAttributes = textFieldAttributes
         textField.adjustsFontSizeToFitWidth = true
-    }
-    
-    // toggleTextFields
-    // Turns the text fields visible / hidden (depending on the user's state).
-    func toggleTextFields(visible: Bool) {
-        topTextField.isHidden = !visible
-        bottomTextField.isHidden = !visible
-        
-        // If the text fields should be visible
-        if visible {
-            updateTextFieldWidth(textFieldConstraint: topTFWidthConstraint)
-            updateTextFieldWidth(textFieldConstraint: bottomTFWidthConstraint)
-        }
     }
     
     // textFieldShouldReturn
@@ -383,8 +359,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // Cancels the current edit.
     @IBAction func cancelMeme() {
         memePhoto.image = nil
-        self.toggleTextFields(visible: false)
-        self.toggleButtons(enable: false)
+        self.toggleUI(enable: false)
         
         self.navigationController?.popViewController(animated: true)
     }
@@ -406,11 +381,15 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         present(alertController, animated: true, completion: nil)
     }
     
-    // toggleButtons
+    // toggleUI
     // Disables/enables the share and cancel buttons, depending on whether the user is editing an image.
-    func toggleButtons(enable: Bool) {
+    // Turns the text fields visible / hidden (depending on the user's state).
+    func toggleUI(enable: Bool) {
+        // enable the buttons when the text fields are on, disable them when they're hidden
         self.cancelButton.isEnabled = enable
         self.shareButton.isEnabled = enable
+        self.topTextField.isHidden = !enable
+        self.bottomTextField.isHidden = !enable
     }
     
     // setConstraints
@@ -437,6 +416,22 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.topTextFieldConstraint.constant = -(self.memePhoto.frame.height / 2) + 40
             self.bottomTextFieldConstraint.constant = (self.memePhoto.frame.height / 2) - 40
         }
+    }
+    
+    // setUpMemeArea
+    // Set up the meme image, the text fields and the buttons.
+    func setUpMemeArea(finalImage: UIImage) {
+        self.memePhoto.image = finalImage
+        
+        // set the text constraints according to the image size
+        if let _ = self.memePhoto.image {
+            self.setConstraints(finalImage: finalImage)
+        }
+        updateTextFieldWidth(textFieldConstraint: topTFWidthConstraint)
+        updateTextFieldWidth(textFieldConstraint: bottomTFWidthConstraint)
+        
+        // Enable the text fields and buttons
+        self.toggleUI(enable: true)
     }
 }
 
