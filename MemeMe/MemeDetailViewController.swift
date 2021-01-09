@@ -8,22 +8,31 @@
 import UIKit
 
 class MemeDetailViewController: UIViewController {
+    
+    // MARK: Outlets
+    @IBOutlet var memePhotoView: UIImageView!
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var memeIndex: Int?
+    var meme: Meme?
 
+    // MARK: View
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let memeIndex = memeIndex, memeIndex < appDelegate.memes.count {
+            self.meme = appDelegate.memes[memeIndex]
+            self.memePhotoView.image = meme?.finalMeme
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: UI
+    
+    // shareMeme
+    // Shares the current edit as an image.
+    @IBAction func shareMeme(_ sender: Any) {
+        let shareViewController = UIActivityViewController(activityItems: [ self.meme as Any ], applicationActivities: nil)
+        present(shareViewController, animated: true, completion: nil)
     }
-    */
-
 }

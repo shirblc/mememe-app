@@ -272,18 +272,64 @@
         <!--Meme Detail View Controller-->
         <scene sceneID="Oce-ev-x6K">
             <objects>
-                <viewController id="jnE-RB-3dP" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="jnE-RB-3dP" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qDJ-VW-fMx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Odj-oE-uSd" userLabel="Top toolbar">
+                                <rect key="frame" x="364" y="88" width="50" height="35"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCN-oL-9qn">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" image="square.and.arrow.up" catalog="system"/>
+                                        <connections>
+                                            <action selector="shareMeme" destination="BYZ-38-t0r" eventType="touchUpInside" id="klD-0x-ELf"/>
+                                            <action selector="shareMeme:" destination="jnE-RB-3dP" eventType="touchUpInside" id="edj-fB-00E"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="6y9-go-T8v"/>
+                                    <constraint firstAttribute="width" constant="50" id="ILb-Nx-X13"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PI4-Ww-YjB">
+                                <rect key="frame" x="0.0" y="123" width="414" height="739"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rcX-8A-Gcx">
+                                        <rect key="frame" x="0.0" y="30" width="414" height="679"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="rcX-8A-Gcx" firstAttribute="top" secondItem="PI4-Ww-YjB" secondAttribute="top" constant="30" id="2Df-IU-RdG"/>
+                                    <constraint firstItem="rcX-8A-Gcx" firstAttribute="centerX" secondItem="PI4-Ww-YjB" secondAttribute="centerX" id="Vvk-X4-vXd"/>
+                                    <constraint firstItem="rcX-8A-Gcx" firstAttribute="centerY" secondItem="PI4-Ww-YjB" secondAttribute="centerY" id="g0c-np-KZr"/>
+                                    <constraint firstItem="rcX-8A-Gcx" firstAttribute="leading" secondItem="PI4-Ww-YjB" secondAttribute="leading" id="t6a-Te-Z30"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="khm-x2-uTn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PI4-Ww-YjB" firstAttribute="top" secondItem="Odj-oE-uSd" secondAttribute="bottom" id="1cK-2F-mmu"/>
+                            <constraint firstItem="Odj-oE-uSd" firstAttribute="top" secondItem="khm-x2-uTn" secondAttribute="top" id="JJu-I2-guw"/>
+                            <constraint firstItem="khm-x2-uTn" firstAttribute="trailing" secondItem="Odj-oE-uSd" secondAttribute="trailing" id="VtD-dd-jSh"/>
+                            <constraint firstItem="PI4-Ww-YjB" firstAttribute="leading" secondItem="khm-x2-uTn" secondAttribute="leading" id="eYc-6v-6Fm"/>
+                            <constraint firstItem="PI4-Ww-YjB" firstAttribute="trailing" secondItem="khm-x2-uTn" secondAttribute="trailing" id="jmd-tE-SrM"/>
+                            <constraint firstItem="PI4-Ww-YjB" firstAttribute="bottom" secondItem="khm-x2-uTn" secondAttribute="bottom" id="ww1-CH-n3Y"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4uR-DG-ANU"/>
+                    <connections>
+                        <outlet property="memePhotoView" destination="rcX-8A-Gcx" id="zl3-6k-JF0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAL-fb-7AV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000" y="449"/>
+            <point key="canvasLocation" x="1000.0000000000001" y="448.66071428571428"/>
         </scene>
         <!--Limited Library View Controller-->
         <scene sceneID="qTr-fo-I6U">
@@ -369,7 +415,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qry-EN-xuw"/>
+        <segue reference="vnQ-eE-b6w"/>
         <segue reference="BYU-uc-Ld5"/>
     </inferredMetricsTieBreakers>
     <resources>
