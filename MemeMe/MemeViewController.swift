@@ -27,6 +27,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     let userPhotoLibrary = PHPhotoLibrary.shared()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var alertController = UIAlertController()
+    var memeIndex: Int?
 
     // MARK: View-related methods
     override func viewDidLoad() {
@@ -35,6 +36,18 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         setUpTextField(textField: topTextField, value: "TOP")
         setUpTextField(textField: bottomTextField, value: "BOTTOM")
         NotificationCenter.default.addObserver(self, selector: #selector(moveView(keyboardNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // Set up the existing meme, if there is one
+        if let memeIndex = memeIndex, memeIndex < appDelegate.memes.count {
+            self.memePhoto.image = appDelegate.memes[memeIndex].originalImage
+            self.topTextField.text = appDelegate.memes[memeIndex].topText
+            self.bottomTextField.text = appDelegate.memes[memeIndex].bottomText
+            self.toggleTextFields(visible: true)
+            self.toggleButtons(enable: true)
+            self.setConstraints(finalImage: appDelegate.memes[memeIndex].originalImage)
+            self.updateTextFieldWidth(textFieldConstraint: self.topTFWidthConstraint)
+            self.updateTextFieldWidth(textFieldConstraint: self.bottomTFWidthConstraint)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -11,6 +11,7 @@ private let reuseIdentifier = "sentMemeCell"
 
 class SentMemesCollectionViewController: UICollectionViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var selectedMeme: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,17 +45,27 @@ class SentMemesCollectionViewController: UICollectionViewController {
         return true
     }
     
+    // Handles meme selection
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedMeme = indexPath.item
+        performSegue(withIdentifier: "addMemeSegue", sender: self)
+    }
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Prepare for segue to MemeViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        // If the segue is to view/edit an existing meme, set the meme's index in the MemeViewController's property
+        if let selectedMeme = selectedMeme {
+            let detailView = segue.destination as! MemeViewController
+            detailView.memeIndex = selectedMeme
+        }
     }
     
     // MARK: UI Actions
     
     @objc func addMeme(_ sender: Any) {
+        selectedMeme = nil
         performSegue(withIdentifier: "addMemeSegue", sender: sender)
     }
 }
