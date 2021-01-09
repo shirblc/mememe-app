@@ -44,6 +44,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="aN2-e7-KQJ"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="addMemeSegue" id="O1h-1P-YmV"/>
+                        <segue destination="jnE-RB-3dP" kind="show" id="vnQ-eE-b6w"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGG-8Z-UKe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -116,16 +117,17 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="Q7F-MU-8Bc"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="addMemeSegue" id="BYU-uc-Ld5"/>
+                        <segue destination="jnE-RB-3dP" kind="show" id="qry-EN-xuw"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSY-9w-0jS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-14" y="467"/>
         </scene>
-        <!--Meme View Controller-->
+        <!--Meme Edit View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="MemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="MemeEditViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -265,7 +267,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="100"/>
+            <point key="canvasLocation" x="1036" y="-267"/>
+        </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="Oce-ev-x6K">
+            <objects>
+                <viewController id="jnE-RB-3dP" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qDJ-VW-fMx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="khm-x2-uTn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4uR-DG-ANU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lAL-fb-7AV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1000" y="449"/>
         </scene>
         <!--Limited Library View Controller-->
         <scene sceneID="qTr-fo-I6U">
@@ -351,7 +369,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="O1h-1P-YmV"/>
+        <segue reference="qry-EN-xuw"/>
+        <segue reference="BYU-uc-Ld5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>

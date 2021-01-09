@@ -1,5 +1,5 @@
 //
-//  MemeViewController.swift
+//  MemeEditViewController.swift
 //  MemeMe
 //
 //  Created by Shir Bar Lev on 03/01/2021.
@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import PhotosUI
 
-class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UITextFieldDelegate, LimitedLibraryViewControllerDelegate {
+class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UITextFieldDelegate, LimitedLibraryViewControllerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var memePhoto: UIImageView!
